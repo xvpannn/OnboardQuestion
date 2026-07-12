@@ -247,16 +247,13 @@ model SimpleBooking {
 }
 
 model OnboardingSubmission {
-  id              String   @id @default(uuid()) @db.Uuid
-  name            String?  @map("client_name")
-  whatsapp        String?  @map("client_whatsapp")
-  businessProfile String   @map("business_profile") @db.Text
-  bottleneck      String   @db.Text
-  triedSolves     String   @map("tried_solves") @db.Text
-  exactOutcome    String   @map("exact_outcome") @db.Text
-  references      String   @db.Text
-  createdAt       DateTime @default(now()) @map("created_at")
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String?  @map("client_name")
+  whatsapp     String   @map("client_whatsapp")
+  projectType  String   @map("project_type") @db.Text
+  permitNeeded String   @map("permit_needed") @db.Text
+  docsReady    String   @map("docs_ready") @db.Text
+  createdAt    DateTime @default(now()) @map("created_at")
 
   @@map("onboarding_submissions")
 }
-

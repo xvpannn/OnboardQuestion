@@ -4,25 +4,11 @@ import { prisma } from "@/lib/db";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const {
-      name,
-      whatsapp,
-      businessProfile,
-      bottleneck,
-      triedSolves,
-      exactOutcome,
-      references,
-    } = body;
+    const { name, whatsapp, projectType, permitNeeded, docsReady } = body;
 
-    // Strict validation of the 4 required onboarding fields
-    if (
-      !businessProfile?.trim() ||
-      !bottleneck?.trim() ||
-      !triedSolves?.trim() ||
-      !exactOutcome?.trim()
-    ) {
+    if (!whatsapp?.trim() || !projectType?.trim() || !permitNeeded?.trim() || !docsReady?.trim()) {
       return NextResponse.json(
-        { error: "Semua pertanyaan wajib diisi kecuali referensi." },
+        { error: "Semua pertanyaan wajib diisi." },
         { status: 400 }
       );
     }
@@ -30,12 +16,10 @@ export async function POST(request: Request) {
     const submission = await prisma.onboardingSubmission.create({
       data: {
         name: name?.trim() || null,
-        whatsapp: whatsapp?.trim() || null,
-        businessProfile: businessProfile.trim(),
-        bottleneck: bottleneck.trim(),
-        triedSolves: triedSolves.trim(),
-        exactOutcome: exactOutcome.trim(),
-        references: references?.trim() || "",
+        whatsapp: whatsapp.trim(),
+        projectType: projectType.trim(),
+        permitNeeded: permitNeeded.trim(),
+        docsReady: docsReady.trim(),
       },
     });
 
