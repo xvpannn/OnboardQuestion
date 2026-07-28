@@ -36,7 +36,7 @@ export async function POST(request: Request) {
 
       const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER, // sends to yourself
+        to: "pandukusumautama@gmail.com", // Target penerima utama
         subject: `[LEAD BARU PBG] ${submission.name || submission.whatsapp}`,
         text: `PROSPEK BARU PBG/SLF MASUK!\n\nNama: ${submission.name || "-"}\nWhatsApp: ${submission.whatsapp}\nJenis Proyek: ${submission.projectType}\nKebutuhan Izin: ${submission.permitNeeded}\nKesiapan Dokumen: ${submission.docsReady}\n\nAmbil tindakan logistik sekarang juga.`,
       };
